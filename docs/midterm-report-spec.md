@@ -7,7 +7,7 @@
 > This SPEC is **not** the report itself; it is the scaffold that the report is written against.
 
 - **Status:** v2 (2026-07-03) — **full draft written** at `docs/midterm-report-draft.md` and reviewed section-by-section. This file is the guide; the draft is the deliverable.
-- **Author:** Aunuun Jeffry Mahbuubi (`11208120@gs.ncku.edu.tw`)
+- **Author:** Aunuun Jeffry Mahbuubi (`66674041+jeffrymahbuubi@users.noreply.github.com`)
 - **Advisor:** Prof. Che-Wei Lin
 - **Lab:** NCKU — Wearable Technology and Mobile Healthcare Laboratory (WTMH)
 - **Collaborator / report audience:** MIRDC (Metal Industries Research & Development Centre); contact "Peter".

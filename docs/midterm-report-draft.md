@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | **Prepared for** | MIRDC — Metal Industries Research & Development Centre |
-| **Author** | Aunuun Jeffry Mahbuubi (`11208120@gs.ncku.edu.tw`) |
+| **Author** | Aunuun Jeffry Mahbuubi (`66674041+jeffrymahbuubi@users.noreply.github.com`) |
 | **Advisor** | Prof. Che-Wei Lin |
 | **Affiliation** | National Cheng Kung University (NCKU) — Wearable Technology and Mobile Healthcare Laboratory (WTMH) |
 | **Reporting period** | February 2026 – June 2026 |
