@@ -1,0 +1,2 @@
+# Known false-positive: example private_key_hex in ruflo agentic-payments agent template (file deleted in a663959).
+954eeb1df749823031daf118ddacc68552c0072d:.claude/agents/payments/agentic-payments.md:generic-api-key:35
