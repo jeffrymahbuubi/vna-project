@@ -1,0 +1,20 @@
+# Server-side packages for a venv that start-jupyter-server.ps1 / .sh activates.
+# jupyter-mcp-server itself is NOT installed here: .mcp.json runs it with `uvx`
+# in its own environment (2.2.4 on 2026-10-23, pulls jupyter-nbmodel-client etc.).
+#
+# Upstream README (datalayer/jupyter-mcp-server, checked 2026-10-23) says:
+#   pip install jupyterlab jupyter-collaboration jupyter-mcp-tools ipykernel
+# with no version pins any more (older READMEs pinned jupyterlab==4.4.1,
+# jupyter-collaboration==4.0.2 and datalayer_pycrdt; that is obsolete since
+# jupyter-mcp-server 1.0.2, and 2.x works with jupyter-collaboration 5).
+#
+# Versions below are the set verified working with the launcher + ystore_prefix.py
+# on 2026-10-23 (Python 3.14, Windows 11). Newer should be fine; if the "0 cells"
+# bug returns after an upgrade, re-run the verification in references/diagnose.md.
+jupyterlab>=4.6.3
+jupyter-collaboration>=5.0.2      # metapackage: jupyter-server-ydoc, jupyter-docprovider, jupyter-collaboration-ui
+jupyter-mcp-tools>=0.1.7          # optional JupyterLab-side tools (notebook_run-all-cells, ...)
+ipykernel>=7.3.0
+# pulled in by jupyter-collaboration, listed so the ystore subclass's import is explicit
+pycrdt>=0.14.4
+pycrdt-store>=0.1.5               # provides pycrdt.store.TempFileYStore

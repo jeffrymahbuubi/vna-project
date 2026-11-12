@@ -1,29 +1,24 @@
-# Start Jupyter Server for MCP integration
-# This runs JupyterLab with collaboration enabled for jupyter-mcp-server
+# Start JupyterLab for jupyter-mcp-server (run in its own terminal; it blocks).
+#
+# Thin wrapper around the validated launcher in the project skill
+# .claude/skills/jupyter-mcp-workflow (collaboration mode, token auth, bounded
+# YStore that fixes the "Notebook has 0 cells" bug, temp cleanup on exit).
+#
+# Server root = code/  (so both LibreVNA-dev/notebook and ena-dev/notebook are
+# visible to the MCP; notebook paths are relative to code/). Venv = code/.venv.
+# Token/port must match .mcp.json (my_secure_token_123, http://127.0.0.1:8888).
+#
+# Usage (from anywhere):
+#   pwsh -File scripts\powershell\start-jupyter-server.ps1            # port 8888
+#   pwsh -File scripts\powershell\start-jupyter-server.ps1 -Port 8899 # extra args pass through
+# Stop: Ctrl+C. Then in Claude Code: /mcp -> reconnect jupyter-mcp-server.
 
-# Get the directory where this script is located
-$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-# Navigate to project root (two directories up from scripts/powershell/)
-$ProjectRoot = Split-Path -Parent (Split-Path -Parent $ScriptDir)
+$RepoRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path))
+$Launcher = Join-Path $RepoRoot ".claude\skills\jupyter-mcp-workflow\scripts\start-jupyter-server.ps1"
 
-Set-Location $ProjectRoot
-
-# Activate virtual environment
-$VenvPath = Join-Path $ProjectRoot "code\.venv\Scripts\Activate.ps1"
-if (Test-Path $VenvPath) {
-    & $VenvPath
-} else {
-    Write-Error "Virtual environment not found at: $VenvPath"
-    Write-Error "Please create the virtual environment first."
+if (-not (Test-Path $Launcher)) {
+    Write-Error "Skill launcher not found: $Launcher (pull jupyter-mcp-workflow from my-skills into .claude/skills/)."
     exit 1
 }
 
-# Start JupyterLab with collaboration features enabled
-# Token must match the one in .mcp.json
-jupyter lab --port 8888 `
-    --IdentityProvider.token=my_secure_token_123 `
-    --ServerApp.allow_origin='*' `
-    --ServerApp.allow_remote_access=true `
-    --ip=0.0.0.0 `
-    --no-browser `
-    --LabApp.collaborative=true
+& $Launcher -ProjectRoot (Join-Path $RepoRoot "code") @args

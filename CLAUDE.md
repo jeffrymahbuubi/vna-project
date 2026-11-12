@@ -9,6 +9,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Always `cd code` before running `uv run python`**, or set `VIRTUAL_ENV=code/.venv` explicitly. Without this, `uv` walks up the directory tree and cannot find `code/.venv` (it never looks into subdirectories), falling back to a global cache environment.
 - LibreVNA-GUI binary: `code/LibreVNA-dev/tools/LibreVNA-GUI`. Scripts 3+ auto-start it in headless mode (`QT_QPA_PLATFORM=offscreen`) and poll TCP port 1234 for readiness.
 
+## "Prompt me open-item" (user command)
+
+When the user says **"Prompt me open-item"**, collect every unresolved open item from the
+current session (and, if the session has none, from the memory/SPEC "open"/"next" notes),
+then present them as decisions with the `AskUserQuestion` tool: one question per item
+(max 4 per call; batch further calls if more), each phrased to stand on its own, with the
+**recommended option first, labelled "(Recommended)"**, plus 1–3 real alternatives with
+their trade-offs. Do not act on any item until the user answers; then carry out exactly
+the chosen options and report the outcome.
+
 ## Git Commit Attribution
 
 **NEVER add a `Co-Authored-By: Claude ...` trailer (or any AI/LLM attribution) to commits

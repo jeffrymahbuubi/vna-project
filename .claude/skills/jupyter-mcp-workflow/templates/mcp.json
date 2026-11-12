@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "jupyter-mcp-server": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "jupyter-mcp-server"
+      ],
+      "env": {
+        "JUPYTER_URL": "http://127.0.0.1:8888",
+        "JUPYTER_TOKEN": "my_secure_token_123",
+        "DOCUMENT_ID": "",
+        "ALLOW_IMG_OUTPUT": "true",
+        "REQUEST_TIMEOUT": "60",
+        "WEBSOCKETS_MAX_BODY_SIZE": "67108864"
+      }
+    }
+  }
+}
